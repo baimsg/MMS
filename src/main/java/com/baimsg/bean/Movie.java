@@ -1,9 +1,9 @@
 package com.baimsg.bean;
 
+import com.baimsg.utils.Tools;
 import com.google.gson.Gson;
 
 import java.io.Serializable;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -70,17 +70,22 @@ public class Movie implements Serializable {
 
     public Double getScore() {
         if (scores == null || scores.isEmpty()) return 0.0;
-        List<Map.Entry<User, Double>> list = new ArrayList<>(scores.entrySet());
-        list.sort((o1, o2) -> (int) (o1.getValue() - o2.getValue()));
-        list.remove(list.size() - 1);
-        list.remove(0);
         double sum = 0.0;
-        for (Map.Entry<User, Double> entry : list) {
-            sum += entry.getValue();
+        if (scores.size() > 2) {
+            List<Map.Entry<User, Double>> list = new ArrayList<>(scores.entrySet());
+            list.sort((o1, o2) -> (int) (o1.getValue() - o2.getValue()));
+            list.remove(list.size() - 1);
+            list.remove(0);
+            for (Map.Entry<User, Double> entry : list) {
+                sum += entry.getValue();
+            }
+            return Tools.toScore(sum / (list.size() - 2));
+        } else {
+            for (Map.Entry<User, Double> entry : scores.entrySet()) {
+                sum += entry.getValue();
+            }
+            return Tools.toScore(sum / scores.size());
         }
-        DecimalFormat df = new DecimalFormat("0.0");
-        String format = df.format(sum / (list.size() - 2));
-        return Double.valueOf(format);
     }
 
     public boolean isListing() {

@@ -10,6 +10,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -155,5 +156,11 @@ public class Tools {
         } else {
             return msg;
         }
+    }
+
+    public static double toScore(double sum) {
+        DecimalFormat df = new DecimalFormat("0.0");
+        String format = df.format(sum);
+        return Double.parseDouble(format);
     }
 }

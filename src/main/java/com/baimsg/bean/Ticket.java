@@ -6,10 +6,20 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Ticket implements Serializable {
+    private static final long serialVersionUID = 0;
+
+    private User merchant;
     private Movie movie;
     private long quantity;
-
     private static final Gson gson = new Gson();
+
+    public User getMerchant() {
+        return merchant;
+    }
+
+    public void setMerchant(User merchant) {
+        this.merchant = merchant;
+    }
 
     public Movie getMovie() {
         return movie;

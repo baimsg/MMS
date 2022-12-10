@@ -17,7 +17,7 @@ public class Home {
         String menu = "首页功能如下 ->\n01·登录\n02·用户注册\n03·商家注册\n04·退出\n请输入序号或关键词";
         System.out.println(menu);
         for (int i = 0; i < UserDepository.users.size(); i++) {
-            System.out.println(UserDepository.users.get(i));
+            System.out.println(UserDepository.users.get(i).getAccount());
         }
     }
 

@@ -92,6 +92,7 @@ public class BuyAssistant {
             long num = Long.parseLong(msg);
             if (num > 0) {
                 ticket.setQuantity(num);
+                ticket.setMerchant(merchant);
                 save(merchant);
             } else {
                 System.out.println("购买数量必须大于1！");

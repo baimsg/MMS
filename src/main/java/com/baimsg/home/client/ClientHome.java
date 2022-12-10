@@ -7,6 +7,7 @@ import com.baimsg.depository.UserDepository;
 import com.baimsg.home.Home;
 import com.baimsg.utils.Tools;
 
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,11 +34,12 @@ public class ClientHome {
             case "1":
             case "01":
             case "电影列表":
-                showMoves();
+                showMoves(false);
                 break;
             case "2":
             case "02":
             case "高分电影":
+                showMoves(true);
                 break;
             case "3":
             case "03":
@@ -52,7 +54,7 @@ public class ClientHome {
             case "5":
             case "05":
             case "评分功能":
-
+                ScoringMovie.init(user);
                 break;
             case "6":
             case "06":
@@ -62,23 +64,26 @@ public class ClientHome {
         }
     }
 
-    private static void showMoves() {
+    private static void showMoves(boolean hot) {
         List<User> merchants = UserDepository.merchants();
         if (merchants.isEmpty()) {
             System.out.println("暂时没有商店！");
         } else {
+            boolean isHot;
             for (User value : merchants) {
+                isHot = false;
                 System.out.println("商店名:" + value.getStoreName());
                 System.out.println("电话:" + value.getTelephone());
                 System.out.println("地址:" + value.getAddress());
                 List<Movie> movies = MovieDepository.movies(value);
-                System.out.println("<-----电影------>");
+                System.out.println("<-----" + (hot ? "高分" : "全部") + "电影------>");
                 if (movies.isEmpty()) {
                     System.out.println("暂时没有上架电影哦！");
                 } else {
                     movies.sort((o1, o2) -> (int) (o2.getScore() - o1.getScore()));
                     for (Movie movie : movies) {
-                        if (movie.isListing()) {
+                        if (movie.isListing() && !isHot) {
+                            if (hot) isHot = true;
                             System.out.println("影片：" + movie.getName());
                             System.out.println("演员；" + movie.getStarring());
                             System.out.println("时长：" + movie.getDuration());

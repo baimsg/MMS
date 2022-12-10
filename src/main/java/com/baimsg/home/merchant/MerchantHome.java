@@ -65,16 +65,15 @@ public class MerchantHome {
         } else {
             movies.sort((o1, o2) -> (int) (o2.getScore() - o1.getScore()));
             for (Movie movie : movies) {
-                if (movie.isListing()) {
-                    System.out.println("影片：" + movie.getName());
-                    System.out.println("演员；" + movie.getStarring());
-                    System.out.println("时长：" + movie.getDuration());
-                    System.out.println("评分：" + movie.getScore());
-                    System.out.println("票价：" + movie.getUnivalent());
-                    System.out.println("票数：" + movie.getTicket());
-                    System.out.println("上映时间：" + movie.getShowTime());
-                    System.out.println("<------------->");
-                }
+                System.out.println("影片：" + movie.getName());
+                System.out.println("演员；" + movie.getStarring());
+                System.out.println("时长：" + movie.getDuration());
+                System.out.println("评分：" + movie.getScore());
+                System.out.println("票价：" + movie.getUnivalent());
+                System.out.println("票数：" + movie.getTicket());
+                System.out.println("上映时间：" + movie.getShowTime());
+                System.out.println((movie.isListing() ? "【已上架】" : "【已下架】"));
+                System.out.println("<------------->");
             }
         }
         back();

@@ -126,15 +126,15 @@ public class BuyAssistant {
              * 更新商家余额
              */
             merchant.setBalance(merchant.getBalance() + sum);
-            UserDepository.insertUser(merchant);
+            UserDepository.save();
             /*
              * 更新客户余额
              */
             user.setBalance(user.getBalance() - sum);
+            UserDepository.save();
             /*
              *更新购票记录
              */
-            UserDepository.insertUser(user);
             TicketDepository.insertTicket(user, ticket);
             System.out.println("购买成功,继续购买其他影片？（Y/N）");
         }

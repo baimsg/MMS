@@ -30,13 +30,8 @@ public class UserDepository {
         }
     }
 
-    public static void updateUser(User user) {
-        users.remove(user);
-        users.add(user);
-        save();
-    }
 
-    private static void save() {
+    public static void save() {
         Tools.save(users, "users.bat");
     }
 

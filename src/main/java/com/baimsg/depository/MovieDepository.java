@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 public class MovieDepository {
-
     public static Map<User, List<Movie>> movies;
 
     static {

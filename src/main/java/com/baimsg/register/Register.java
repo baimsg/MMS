@@ -21,6 +21,7 @@ public class Register {
             registerUser();
         }
         UserDepository.insertUser(user);
+        System.out.println("注册成功！");
         Home.init();
     }
 

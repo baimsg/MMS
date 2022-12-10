@@ -20,16 +20,20 @@ public class UserDepository {
     }
 
     public static void insertUser(User user) {
-
         /*
          * 直接终止命令窗口会执行到这需要做一下判断
          */
         boolean merchant = user.getMerchant();
         if (merchant && user.getAddress() != null || !merchant && user.getBalance() != null) {
-            System.out.println("注册成功！");
             users.add(user);
             save();
         }
+    }
+
+    public static void updateUser(User user) {
+        users.remove(user);
+        users.add(user);
+        save();
     }
 
     private static void save() {
@@ -43,6 +47,34 @@ public class UserDepository {
             }
         }
         return false;
+    }
+
+    public static boolean hasMerchant(String storeName) {
+        for (User value : merchants()) {
+            if (value.getStoreName().equals(storeName)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static List<User> merchants() {
+        List<User> list = new ArrayList<>();
+        for (User value : users) {
+            if (value.getMerchant()) {
+                list.add(value);
+            }
+        }
+        return list;
+    }
+
+    public static User userByStoreName(String storeName) {
+        for (User value : users) {
+            if (storeName.equals(value.getStoreName())) {
+                return value;
+            }
+        }
+        return null;
     }
 
     public static User user(String account) {

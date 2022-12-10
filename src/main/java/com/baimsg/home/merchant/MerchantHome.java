@@ -4,6 +4,7 @@ import com.baimsg.bean.Movie;
 import com.baimsg.bean.User;
 import com.baimsg.depository.MovieDepository;
 import com.baimsg.home.Home;
+import com.baimsg.utils.Tools;
 
 import java.util.List;
 import java.util.Scanner;
@@ -27,35 +28,33 @@ public class MerchantHome {
     }
 
     private static void operate() {
-        Scanner scanner = new Scanner(System.in);
-        if (scanner.hasNext()) {
-            String msg = scanner.next();
-            switch (msg) {
-                case "1":
-                case "01":
-                case "电影列表":
-                    showMoves();
-                    break;
-                case "2":
-                case "02":
-                case "上架电影":
-                    ReleaseMovies.init(user);
-                case "3":
-                case "03":
-                case "下架电影":
-                    RevokeMovies.init(user);
-                    break;
-                case "4":
-                case "04":
-                case "修改电影":
-                    ReviseMovies.init(user);
-                    break;
-                case "5":
-                case "05":
-                case "退出":
-                    Home.init();
-                    break;
-            }
+        String msg = Tools.home();
+        if (msg == null) return;
+        switch (msg) {
+            case "1":
+            case "01":
+            case "电影列表":
+                showMoves();
+                break;
+            case "2":
+            case "02":
+            case "上架电影":
+                ReleaseMovies.init(user);
+            case "3":
+            case "03":
+            case "下架电影":
+                RevokeMovies.init(user);
+                break;
+            case "4":
+            case "04":
+            case "修改电影":
+                ReviseMovies.init(user);
+                break;
+            case "5":
+            case "05":
+            case "退出":
+                Home.init();
+                break;
         }
     }
 

@@ -2,6 +2,7 @@ package com.baimsg.utils;
 
 import com.baimsg.bean.User;
 import com.baimsg.home.Home;
+import com.baimsg.home.client.ClientHome;
 import com.baimsg.home.merchant.MerchantHome;
 
 import java.io.File;
@@ -108,7 +109,8 @@ public class Tools {
 
     /**
      * 统一处理返回首页逻辑
-     * @return  返回null表示已返回首页
+     *
+     * @return 返回null表示已返回首页
      */
     public static String home() {
         Scanner scanner = new Scanner(System.in);
@@ -132,6 +134,23 @@ public class Tools {
         String msg = scanner.nextLine();
         if (msg.equals("exit()")) {
             MerchantHome.init(user);
+            return null;
+        } else {
+            return msg;
+        }
+    }
+
+    /**
+     * 统一处理返回客户首页逻辑
+     *
+     * @param user 当前用户
+     * @return 返回null表示已返回首页
+     */
+    public static String clientHome(User user) {
+        Scanner scanner = new Scanner(System.in);
+        String msg = scanner.nextLine();
+        if (msg.equals("exit()")) {
+            ClientHome.init(user);
             return null;
         } else {
             return msg;

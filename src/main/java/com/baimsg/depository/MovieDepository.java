@@ -28,7 +28,6 @@ public class MovieDepository {
             movieList.add(movie);
             movies.put(user, movieList);
             save();
-            System.out.println("上架成功！");
         }
     }
 

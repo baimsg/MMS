@@ -106,6 +106,10 @@ public class Tools {
         return null;
     }
 
+    /**
+     * 统一处理返回首页逻辑
+     * @return  返回null表示已返回首页
+     */
     public static String home() {
         Scanner scanner = new Scanner(System.in);
         String msg = scanner.nextLine();
@@ -117,6 +121,12 @@ public class Tools {
         }
     }
 
+    /**
+     * 统一处理返回商家首页逻辑
+     *
+     * @param user 当前用户
+     * @return 返回null表示已返回首页
+     */
     public static String merchantHome(User user) {
         Scanner scanner = new Scanner(System.in);
         String msg = scanner.nextLine();

@@ -43,7 +43,12 @@ public class MerchantHome {
                 case "3":
                 case "03":
                 case "下架电影":
-                    RemoveMovies.init(user);
+                    RevokeMovies.init(user);
+                    break;
+                case "4":
+                case "04":
+                case "修改电影":
+                    ReviseMovies.init(user);
                     break;
                 case "5":
                 case "05":
